@@ -1,6 +1,8 @@
 import string
 import nltk
 
+from gazetteers import PERSON_NAMES, LOCATIONS
+
 
 def word2features(sentence, index):
     word = sentence[index]
@@ -16,9 +18,14 @@ def word2features(sentence, index):
         'prefix-2': word[:2],
         'suffix-1': word[-1:],
         'suffix-2': word[-2:],
-        'is_punctuation': word in string.punctuation
+        'is_punctuation': word in string.punctuation,
+
+        # New gazetteer-based features
+        'in_person_gazetteer': word in PERSON_NAMES,
+        'in_location_gazetteer': word in LOCATIONS
     }
 
+    # Contextual features
     if index > 0:
         prev_word = sentence[index - 1]
         features.update({
@@ -36,7 +43,6 @@ def word2features(sentence, index):
         })
     else:
         features['EOS'] = True  # End of sentence
-
     return features
 
 
