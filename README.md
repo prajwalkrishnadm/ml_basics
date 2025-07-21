@@ -32,7 +32,6 @@ Install required packages:
 ```bash
 pip install nltk
 
-
 ## Download NLTK resources
 ## if windows, try adding NLTK package address in the environment variable for the same name
 ## This fixed the nltk installation issues for me
@@ -40,3 +39,6 @@ pip install nltk
 import nltk
 nltk.download('averaged_perceptron_tagger')
 
+```
+## Debugging issues Help
+- https://www.nltk.org/data.html
